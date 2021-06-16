@@ -6,7 +6,9 @@ COPY . /var/www
 
 RUN npm install
 
-RUN npm run production
+RUN npm run build
+
+# ÖLOL
 
 FROM nginx:1.14-alpine AS APP_BASE
 

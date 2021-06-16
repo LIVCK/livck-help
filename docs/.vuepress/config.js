@@ -32,7 +32,6 @@ module.exports = {
         ],
         sidebar: [
 
-
             {
                 title: 'Getting Started',
                 collapsable: false,

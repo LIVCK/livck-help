@@ -1,8 +1,8 @@
 // https://raw.githubusercontent.com/LIVCK/livck-docs/main/README.md
 
 module.exports = {
-    title: 'LIVCK - Documentation',
-    description: 'Here can you find detailed documentation of the software.',
+    title: 'LIVCK.com - Self-Hosted',
+    description: 'Here can you find detailed documentation of the self-hosted software.',
     dest: './dist',
 
     async additionalPages() {
@@ -10,20 +10,26 @@ module.exports = {
 
         const readme = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/README.md')
         const changelog = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/changelog.md')
+        const docker = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/docker-compose.md')
         return [
             {
                 path: '/',
                 content: readme
             },
             {
+                path: '/docker-compose/',
+                content: docker,
+                name: 'docker-compose'
+            },
+            {
                 path: '/changelog/',
                 content: changelog
-            }
+            },
         ]
     },
 
     themeConfig: {
-        sidebarDepth: 1,
+        sidebarDepth: 2,
         search: false,
         nav: [
             {text: 'LIVCK', link: 'https://livck.com'},
@@ -36,7 +42,8 @@ module.exports = {
                 title: 'Getting Started',
                 collapsable: false,
                 children: [
-                    ['/', 'Installation & Usage'],
+                    ['/', 'Installation'],
+                    ['/docker-compose/', 'Installation via Docker-Compose']
                 ],
             },
             {

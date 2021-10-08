@@ -11,6 +11,8 @@ module.exports = {
         const readme = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/README.md')
         const changelog = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/changelog.md')
         const docker = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/docker-compose.md')
+        const update = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade.md')
+        const updateDocker = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade-docker.md')
         return [
             {
                 path: '/',
@@ -19,7 +21,14 @@ module.exports = {
             {
                 path: '/docker-compose/',
                 content: docker,
-                name: 'docker-compose'
+            },
+            {
+                path: '/upgrade/',
+                content: update,
+            },
+            {
+                path: '/upgrade-docker/',
+                content: updateDocker,
             },
             {
                 path: '/changelog/',
@@ -43,7 +52,9 @@ module.exports = {
                 collapsable: false,
                 children: [
                     ['/', 'Installation'],
-                    ['/docker-compose/', 'Installation via Docker-Compose']
+                    ['/docker-compose/', 'Installation via Docker-Compose'],
+                    ['/upgrade/', 'Upgrade LIVCK'],
+                    ['/upgrade-docker/', 'Upgrade LIVCK via Docker-Compose']
                 ],
             },
             {

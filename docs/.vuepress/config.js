@@ -60,7 +60,7 @@ module.exports = {
                     ['/docker-compose/', 'Installation via Docker-Compose'],
                     ['/upgrade/', 'Upgrade LIVCK'],
                     ['/upgrade-docker/', 'Upgrade LIVCK via Docker-Compose'],
-                    ['/upgrade-for-old-versions/', 'Upgrade LIVCK (for old versions ~ 1.1.3)'],
+                    ['/upgrade-for-old-versions/', 'Upgrade LIVCK (for 1.1.3)'],
                 ],
             },
             {

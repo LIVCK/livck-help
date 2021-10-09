@@ -13,6 +13,7 @@ module.exports = {
         const docker = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/docker-compose.md')
         const update = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade.md')
         const updateDocker = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade-docker.md')
+        const updateOld = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade-for-old-versions.md')
         return [
             {
                 path: '/',
@@ -29,6 +30,10 @@ module.exports = {
             {
                 path: '/upgrade-docker/',
                 content: updateDocker,
+            },
+            {
+                path: '/upgrade-for-old-versions/',
+                content: updateOld,
             },
             {
                 path: '/changelog/',
@@ -54,7 +59,8 @@ module.exports = {
                     ['/', 'Installation'],
                     ['/docker-compose/', 'Installation via Docker-Compose'],
                     ['/upgrade/', 'Upgrade LIVCK'],
-                    ['/upgrade-docker/', 'Upgrade LIVCK via Docker-Compose']
+                    ['/upgrade-docker/', 'Upgrade LIVCK via Docker-Compose'],
+                    ['/upgrade-for-old-versions/', 'Upgrade LIVCK (for old versions ~ 1.1.3)'],
                 ],
             },
             {

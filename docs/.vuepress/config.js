@@ -8,32 +8,32 @@ module.exports = {
     async additionalPages() {
         const rp = require('request-promise');
 
-        const readme = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/README.md')
-        const changelog = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/changelog.md')
-        const docker = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/docker-compose.md')
-        const update = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade.md')
-        const updateDocker = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade-docker.md')
-        const updateOld = await rp('https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade-for-old-versions.md')
+        const oldInstallation = await rp(`https://raw.githubusercontent.com/LIVCK/livck-docs/main/old-installation.md?v=${Date.now()}`)
+        const changelog = await rp(`https://raw.githubusercontent.com/LIVCK/livck-docs/main/changelog.md?v=${Date.now()}`)
+        const docker = await rp(`https://raw.githubusercontent.com/LIVCK/livck-docs/main/README.md?v=${Date.now()}`)
+        const update = await rp(`https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade.md?v=${Date.now()}`)
+        const updateDocker = await rp(`https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade-docker.md?v=${Date.now()}`)
+        const updateOld = await rp(`https://raw.githubusercontent.com/LIVCK/livck-docs/main/upgrade-for-old-versions.md?v=${Date.now()}`)
         return [
             {
                 path: '/',
-                content: readme
-            },
-            {
-                path: '/docker-compose/',
-                content: docker,
+                content: docker
             },
             {
                 path: '/upgrade/',
-                content: update,
+                content: updateDocker,
             },
             {
-                path: '/upgrade-docker/',
-                content: updateDocker,
+                path: '/upgrade-without-docker/',
+                content: update,
             },
             {
                 path: '/upgrade-for-old-versions/',
                 content: updateOld,
+            },
+            {
+                path: '/old-installation/',
+                content: oldInstallation,
             },
             {
                 path: '/changelog/',
@@ -57,10 +57,10 @@ module.exports = {
                 collapsable: false,
                 children: [
                     ['/', 'Installation'],
-                    ['/docker-compose/', 'Installation via Docker-Compose'],
                     ['/upgrade/', 'Upgrade LIVCK'],
-                    ['/upgrade-docker/', 'Upgrade LIVCK via Docker-Compose'],
+                    ['/upgrade-without-docker/', 'Upgrade LIVCK without Docker Stack'],
                     ['/upgrade-for-old-versions/', 'Upgrade LIVCK (for 1.1.3)'],
+                    ['/old-installation/', 'LIVCK Installation (Outdated)'],
                 ],
             },
             {
@@ -87,6 +87,12 @@ module.exports = {
                 hostname: 'https://help.livck.com',
             },
         ],
+        [
+            '@vuepress/google-analytics',
+            {
+                'ga': 'G-7NGN4CJ02L'
+            }
+        ]
     ],
 }
 

@@ -12,9 +12,9 @@ FROM nginx:1.14-alpine AS APP_BASE
 
 WORKDIR /var/www
 
-COPY --from=BUILD /var/www .
+COPY --from=BUILD /var/www ./dist
 
-COPY ./site.conf /etc/nginx/conf.d/site.conf
+COPY ./site.conf /etc/nginx/conf.d/default.conf
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log

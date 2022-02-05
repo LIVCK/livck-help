@@ -1,4 +1,4 @@
-FROM node:12-alpine AS BUILD
+FROM node:16-alpine AS BUILD
 
 WORKDIR /var/www
 
@@ -8,8 +8,6 @@ RUN npm install
 
 RUN npm run build
 
-# ÖLOL
-
 FROM nginx:1.14-alpine AS APP_BASE
 
 WORKDIR /var/www
@@ -18,4 +16,9 @@ COPY --from=BUILD /var/www .
 
 COPY ./site.conf /etc/nginx/conf.d/site.conf
 
-CMD ["nginx"]
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+	&& ln -sf /dev/stderr /var/log/nginx/error.log
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

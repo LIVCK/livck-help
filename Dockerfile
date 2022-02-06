@@ -12,7 +12,7 @@ FROM nginx:1.14-alpine AS APP_BASE
 
 WORKDIR /var/www
 
-COPY --from=BUILD /var/www ./dist
+COPY --from=BUILD /var/www ./dist/*
 
 COPY ./site.conf /etc/nginx/conf.d/default.conf
 
